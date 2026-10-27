@@ -88,6 +88,15 @@ UPDATE Participated
 SET damage_amt = 25000
 WHERE regno = 'KA05MH9765' AND report_no = 'R003';
 
-SELECT driverid 
+--More Queires 
+select * from car order by year asc;
+select count(*) from participated, car where participated.regno = car.regno and car.model='Audi';
+select * from participated order by damage_amt desc;
+select count(*) from participated, owns, accident where owns.regno = participated.regno AND participated.report_no = accident.report_no AND year(accident.accident_date) = 2008;
+select avg(damage_amt) from participated;
+select name from participated, person where participated.driverid = person.driverid AND 
+	damage_amt > (select avg(damage_amt) from participated);
+select max(damage_amt) max_damage from participated; 
+
 FROM Participated
 WHERE damage_amt >= 25000;
