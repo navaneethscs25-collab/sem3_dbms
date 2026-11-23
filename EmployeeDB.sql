@@ -97,4 +97,25 @@ select * from incentives;
 select * from project;
 select * from assigned_to;
 
+SELECT e.empno 
+FROM emp e, assigned_to a, project p
+WHERE e.empno = a.empno AND
+	  a.pno = p.pno AND 
+      p.ploc in ('Bengaluru' , 'Hyderbad', 'Mysuru');
+      
+      
+SELECT e.empno 
+FROM emp e 
+WHERE NOT EXISTS (
+	SELECT* 
+    FROM incentives i
+    WHERE i.empno = e.empno
+);
+
+SELECT e.empno, e.ename, d.dname, d.loc, a.job_role, p.ploc
+FROM emp e, dept d, assigned_to a, project P
+WHERE e.deptno = d.deptno AND 
+e.empno =  a.empno AND 
+a.pno = p.pno  AND d.loc = p.ploc; 
+
 
